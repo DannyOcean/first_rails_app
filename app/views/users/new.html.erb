@@ -1,0 +1,6 @@
+<h2>Create new user</h2>
+
+<%= form_for @user do |f| %>
+    <%= render partial: "shared/form", locals: {f: f} %>
+    <p><%= f.submit "Create" %></p>
+<% end %>
