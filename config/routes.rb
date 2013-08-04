@@ -1,6 +1,5 @@
 TaskManager::Application.routes.draw do
 
-  devise_for :users
   resources :users
   resources :projects, only: [:index, :show, :create, :destroy]
   resources :tasks, only: [:create, :destroy]
