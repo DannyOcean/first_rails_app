@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :find_user, only: [:show, :edit, :update, :destroy]
-  before_filter :check_if_admin, only: [:destroy]
+  #before_filter :check_if_admin, only: [:destroy]
 
   def index
     @users = User.all
