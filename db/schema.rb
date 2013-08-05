@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 20130717182141) do
 
   create_table "users", force: true do |t|
     t.string "login"
+    t.string "name"
     t.string "email"
     t.string "password"
     t.string "password_confirmation"
-    t.string "name"
+    t.string "password_digest"
   end
 
 end

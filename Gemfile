@@ -31,6 +31,10 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 
+gem 'bcrypt-ruby', '3.0.1'
+
+gem 'rake-compiler'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
