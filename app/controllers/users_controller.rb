@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.errors.blank?
       sign_in @user
-      flash[:success] = "Yo man!"
+      flash[:success] = "Yo man! Glad to see you!"
       redirect_to @user
     else
       render "new"
@@ -30,16 +30,16 @@ class UsersController < ApplicationController
   def update
     @user.update_attributes(user_params)
     if @user.errors.blank?
+      flash[:success] = "Successfully updated!"
       redirect_to action: "index"
     else
-      #render text: "#{@user.errors.full_messages}"
       render "edit"
     end
   end
 
   def destroy
     @user.destroy
-    flash[:success] = "User has been slain"
+    flash[:success] = "User has been slain! mhahahahah >:D"
     redirect_to action: "index"
   end
 
