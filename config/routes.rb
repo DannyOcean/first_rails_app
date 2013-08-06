@@ -3,8 +3,12 @@ TaskManager::Application.routes.draw do
   resources :users
   resources :projects, only: [:index, :show, :create, :destroy]
   resources :tasks, only: [:create, :destroy]
+  resource :sessions, only: [:new, :create, :destroy]
 
   root 'users#index'
+  match '/signup',  to: 'users#new',         via: 'get'
+  match '/signin',  to: 'sessions#new',      via: 'get'
+  match '/signout', to: 'sessions#destroy',  via: 'delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

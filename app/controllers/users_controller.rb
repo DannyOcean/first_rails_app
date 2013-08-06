@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_filter :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:edit, :update]
+  before_action :correnct_user, only: [:edit, :update]
   #before_filter :check_if_admin, only: [:destroy]
 
   def index
@@ -9,13 +11,14 @@ class UsersController < ApplicationController
 
   def create
     #render text: params.inspect
-    @user = User.create(params[:user])
+    @user = User.create(user_params)
     if @user.errors.blank?
-      redirect_to user_path(@user)
+      sign_in @user
+      flash[:success] = "Yo man!"
+      redirect_to @user
     else
-      #render text: "#{@user.errors.full_messages}"
       render "new"
-      end
+    end
   end
 
   def show
@@ -25,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update_attributes(params[:user])
+    @user.update_attributes(user_params)
     if @user.errors.blank?
       redirect_to action: "index"
     else
@@ -52,4 +55,18 @@ class UsersController < ApplicationController
     @user = User.where(id: params[:id]).first
     render_404 unless @user
   end
+
+  def user_params
+    params.require(:user).permit(:login, :name, :email, :password, :password_confirmation)
+  end
+
+  def signed_in_user
+    redirect_to signin_url, notice: "Please sign in." unless signed_in?
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
+
 end

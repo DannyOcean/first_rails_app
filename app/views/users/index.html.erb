@@ -1,5 +1,4 @@
-<h1>Users</h1>
-
+<h2>Users</h2>
 <% if @users.blank? %>
     <b>There is no users</b>
 <% else %>
@@ -19,5 +18,5 @@
             <td><%= link_to "Edit", user_path(i), method: :put %></td>
             <td><%= link_to "Delete", user_path(i), method: :delete, data: { confirm: "Are you sure?"} %></td>
         </tr>
-<% end %>
+    <% end %>
 <% end %>
