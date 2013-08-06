@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :find_user, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:edit, :update]
-  before_action :correnct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
   #before_filter :check_if_admin, only: [:destroy]
 
   def index
@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    flash[:success] = "User has been slain"
     redirect_to action: "index"
   end
 
