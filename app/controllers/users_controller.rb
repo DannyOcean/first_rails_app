@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       flash[:success] = "Yo man! Glad to see you!"
       redirect_to @user
     else
+      flash.now[:error] = "You made some mistake in the form, try again :)"
       render "new"
     end
   end
@@ -28,11 +29,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update_attributes(user_params)
+    @user.update_attributes(params[:user])
     if @user.errors.blank?
-      flash[:success] = "Successfully updated!"
+      flash[:success] = "Profile successfully updated!"
+      sign_in @user
       redirect_to action: "index"
     else
+      flash.now[:error] = "You made some mistake in the form, try again :)"
       render "edit"
     end
   end
