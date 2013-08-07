@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  #login: iamadmin
+  #pass: revolution
 
   before_filter :find_user, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
-  #before_filter :check_if_admin, only: [:destroy]
+  before_filter :check_if_admin, only: [:destroy]
 
   def index
     @users = User.all
@@ -69,8 +71,12 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.where(id: params[:id]).first
     redirect_to(root_url) unless current_user?(@user)
+  end
+
+  def check_if_admin
+    render_403 unless current_user.admin?
   end
 
 end

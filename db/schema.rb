@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130806091154) do
+ActiveRecord::Schema.define(version: 20130807163307) do
 
   create_table "projects", force: true do |t|
     t.string  "name"
@@ -29,13 +29,14 @@ ActiveRecord::Schema.define(version: 20130806091154) do
   add_index "tasks", ["name"], name: "index_tasks_on_name"
 
   create_table "users", force: true do |t|
-    t.string "login"
-    t.string "name"
-    t.string "email"
-    t.string "password"
-    t.string "password_confirmation"
-    t.string "password_digest"
-    t.string "remember_token"
+    t.string  "login"
+    t.string  "name"
+    t.string  "email"
+    t.string  "password"
+    t.string  "password_confirmation"
+    t.string  "password_digest"
+    t.string  "remember_token"
+    t.boolean "admin",                 default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
