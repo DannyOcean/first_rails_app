@@ -1,6 +1,15 @@
 <h2>Edit user</h2>
 
-<%= form_for @user do |f| %>
-    <%= render partial: "shared/form", locals: {f: f} %>
-    <p><%= f.submit "Edit" %></p>
-<% end %>
+<div class="row">
+    <div class="span6 offset3">
+        <%= form_for(@user) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+        <% end %>
+
+        <%= form_for @user do |f| %>
+            <%= render partial: "shared/user_form", locals: {f: f} %>
+            <p><%= f.submit "Edit" %></p>
+        <% end %>
+
+    </div>
+</div>

@@ -7,5 +7,5 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :user
   validates :name, :user_id, presence: true
-  validates :name, length: {maximum: 20}
+  validates :name, length: {in: 3..50}
 end

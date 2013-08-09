@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   #login: iamadmin
   #pass: revolution
 
-  before_filter :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_if_admin, only: [:destroy]
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
-  before_filter :check_if_admin, only: [:destroy]
 
   def index
     @users = User.all
@@ -25,10 +25,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    unless @user
-      render text: "Page not found"
-    end
+    render_404 unless @user
   end
+    #@projects = @user.projects.paginate(page: params[:page])
 
   def update
     @user.update_attributes(params[:user])
@@ -57,17 +56,13 @@ class UsersController < ApplicationController
 
   private
 
-  def find_user
-    @user = User.where(id: params[:id]).first
-    render_404 unless @user
-  end
-
   def user_params
     params.require(:user).permit(:login, :name, :email, :password, :password_confirmation)
   end
 
-  def signed_in_user
-    redirect_to signin_url, notice: "Please sign in." unless signed_in?
+  def find_user
+    @user = User.where(id: params[:id]).first
+    render_404 unless @user
   end
 
   def correct_user

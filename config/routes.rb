@@ -1,14 +1,19 @@
 TaskManager::Application.routes.draw do
 
-  resources :users
-  resources :projects, only: [:index, :show, :create, :destroy]
-  resources :tasks, only: [:create, :destroy]
+  resources :users do
+    resources :projects do
+      resources :tasks, only: [:create, :edit, :update, :destroy]
+    end
+  end
+  #resource :tasks, only: [:create, :edit, :update, :destroy]
   resource :sessions, only: [:new, :create, :destroy]
 
   root 'sessions#new'
   match '/signup',  to: 'users#new',         via: 'get'
   match '/signin',  to: 'sessions#new',      via: 'get'
   match '/signout', to: 'sessions#destroy',  via: 'delete'
+
+  #match '/users/:id/projects/new', to: 'projects#new', via: 'post'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
