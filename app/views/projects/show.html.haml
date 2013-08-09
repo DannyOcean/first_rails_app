@@ -1,0 +1,21 @@
+%h2= @project.name
+.row
+  .span6.offset3
+    %h2 Tasks
+    - if @project.tasks.blank?
+      %b There are no tasks
+    - else
+      %table
+        %tr
+          %th ID
+          %th Name
+          %th Status
+          %th
+          %th
+        - @project.tasks.each do |i|
+          %tr
+            %td= i.project_id
+            %td= i.name
+            %td= i.status
+            %td= link_to "Edit", '#'
+            %td= link_to "Delete", '#'

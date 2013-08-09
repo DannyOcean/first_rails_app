@@ -5,7 +5,6 @@ TaskManager::Application.routes.draw do
       resources :tasks, only: [:create, :edit, :update, :destroy]
     end
   end
-  #resource :tasks, only: [:create, :edit, :update, :destroy]
   resource :sessions, only: [:new, :create, :destroy]
 
   root 'sessions#new'
@@ -13,10 +12,9 @@ TaskManager::Application.routes.draw do
   match '/signin',  to: 'sessions#new',      via: 'get'
   match '/signout', to: 'sessions#destroy',  via: 'delete'
 
-  #match '/users/:id/projects/new', to: 'projects#new', via: 'post'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'users/:id/projects/:id' => 'projects#show',     as: :project_show
+  get 'users/:id/projects/:id/edit' => 'project#edit', as: :project_edit
+  get 'users/:id/projects/:id' => 'projects#destroy',  as: :project_delete
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -31,12 +29,6 @@ TaskManager::Application.routes.draw do
   #     collection do
   #       get 'sold'
   #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
   #   end
 
   # Example resource route with more complex sub-resources:
