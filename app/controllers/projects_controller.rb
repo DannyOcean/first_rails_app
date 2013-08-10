@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project.update_attributes(project_params)
+    @project.update_attributes(params[:project])
     if @project.errors.blank?
       flash[:success] = "Successfully updated!"
       redirect_to action: "index"

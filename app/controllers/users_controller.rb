@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #pass: revolution
 
   before_action :find_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_if_admin, only: [:destroy]
+  before_action :check_if_admin, only: [:index,:destroy]
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
 

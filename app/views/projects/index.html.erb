@@ -12,12 +12,12 @@
                     <th></th>
                     <th></th>
                 </tr>
-            <% @projects.each do |i| %>
+            <% @projects.each do |proj| %>
                 <tr>
-                    <td><%= i.id %></td>
-                    <td><%= link_to i.name,   url_for([@user, i]), method: :get %></td>
-                    <td><%= link_to "Edit",   url_for([@user, i]), method: :put %></td>
-                    <td><%= link_to "Delete", url_for([@user, i]), method: :delete, data: { confirm: "Are you sure?"} %></td>
+                    <td><%= proj.id %></td>
+                    <td><%= link_to proj.name, url_for([@user, proj]), method: :get %></td>
+                    <td><%= link_to "Edit", edit_user_project_path(@user, proj) %></td>
+                    <td><%= link_to "Delete", url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?"} %></td>
                 </tr>
             <% end %>
         <% end %>

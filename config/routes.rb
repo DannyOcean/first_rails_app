@@ -12,10 +12,6 @@ TaskManager::Application.routes.draw do
   match '/signin',  to: 'sessions#new',      via: 'get'
   match '/signout', to: 'sessions#destroy',  via: 'delete'
 
-  get 'users/:id/projects/:id' => 'projects#show',     as: :project_show
-  get 'users/:id/projects/:id/edit' => 'project#edit', as: :project_edit
-  get 'users/:id/projects/:id' => 'projects#destroy',  as: :project_delete
-
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
