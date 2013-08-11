@@ -2,7 +2,7 @@ TaskManager::Application.routes.draw do
 
   resources :users do
     resources :projects do
-      resources :tasks, only: [:create, :edit, :update, :destroy]
+      resources :tasks, except: [:index, :show]
     end
   end
   resource :sessions, only: [:new, :create, :destroy]

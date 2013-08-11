@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def show
     render_404 unless @user
   end
-    #@projects = @user.projects.paginate(page: params[:page])
+
 
   def update
     @user.update_attributes(params[:user])

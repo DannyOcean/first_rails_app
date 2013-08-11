@@ -2,20 +2,23 @@
 .row
   .span6.offset3
     %h2 Tasks
+    .well
+      = params.inspect
     - if @project.tasks.blank?
       %b There are no tasks
     - else
-      %table
+      %table.table.table-hover
         %tr
           %th ID
           %th Name
           %th Status
           %th
           %th
-        - @project.tasks.each do |i|
-          %tr
-            %td= i.project_id
-            %td= i.name
-            %td= i.status
-            %td= link_to "Edit", '#'
-            %td= link_to "Delete", '#'
+        - @project.tasks.each do |task|
+          %tbdody
+            %tr
+              %td= task.id
+              %td= task.name
+              %td= task.status
+              %td= link_to "Edit", edit_user_project_task_path(@user, @project, task)
+              %td= link_to "Delete", user_project_task_path(@user, @project, task), method: :delete

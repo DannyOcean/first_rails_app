@@ -5,7 +5,7 @@
         <% if @projects.blank? %>
             <b>There is no projects</b>
         <% else %>
-            <table>
+            <table class="table table-hover">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
@@ -13,12 +13,14 @@
                     <th></th>
                 </tr>
             <% @projects.each do |proj| %>
-                <tr>
-                    <td><%= proj.id %></td>
-                    <td><%= link_to proj.name, url_for([@user, proj]), method: :get %></td>
-                    <td><%= link_to "Edit", edit_user_project_path(@user, proj) %></td>
-                    <td><%= link_to "Delete", url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?"} %></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td><%= proj.id %></td>
+                        <td><%= link_to proj.name, url_for([@user, proj]), method: :get %></td>
+                        <td><%= link_to "Edit", edit_user_project_path(@user, proj) %></td>
+                        <td><%= link_to "Delete", url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?"} %></td>
+                    </tr>
+                </tbody>
             <% end %>
         <% end %>
     </div>

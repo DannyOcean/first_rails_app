@@ -1,0 +1,7 @@
+%h2 New Task
+.row
+  .span6.offset4
+    = form_for @task, url: user_project_tasks_path do |f|
+      = f.label :name
+      = f.text_field :name
+      %p #{f.submit "Create", class: "btn btn-medium btn-primary"}

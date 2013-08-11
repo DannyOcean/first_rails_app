@@ -4,7 +4,7 @@
         <% if @users.blank? %>
             <b>There is no users</b>
         <% else %>
-            <table>
+            <table class="table table-hover">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
@@ -13,13 +13,15 @@
                     <th></th>
                 </tr>
         <% @users.each do |i| %>
-                <tr>
-                    <td><%= i.id %></td>
-                    <td><%= link_to i.name, user_path(i) %></td>
-                    <td><%= i.email %></td>
-                    <td><%= link_to "Edit", user_path(i), method: :put %></td>
-                    <td><%= link_to "Delete", user_path(i), method: :delete, data: { confirm: "Are you sure?"} %></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td><%= i.id %></td>
+                        <td><%= link_to i.name, user_path(i) %></td>
+                        <td><%= i.email %></td>
+                        <td><%= link_to "Edit", user_path(i), method: :put %></td>
+                        <td><%= link_to "Delete", user_path(i), method: :delete, data: { confirm: "Are you sure?"} %></td>
+                    </tr>
+                </tbody>
             <% end %>
         <% end %>
     </div>

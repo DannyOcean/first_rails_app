@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @user = current_user
     if @project
       @project = Project.includes(:tasks).find(params[:id])
     else
