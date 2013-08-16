@@ -1,5 +1,6 @@
 TaskManager::Application.routes.draw do
 
+  get "static_pages/home"
   resources :users do
     resources :projects do
       resources :tasks, except: [:index, :show]
@@ -7,7 +8,7 @@ TaskManager::Application.routes.draw do
   end
   resource :sessions, only: [:new, :create, :destroy]
 
-  root 'sessions#new'
+  root 'static_pages#home'
   match '/signup',  to: 'users#new',         via: 'get'
   match '/signin',  to: 'sessions#new',      via: 'get'
   match '/signout', to: 'sessions#destroy',  via: 'delete'

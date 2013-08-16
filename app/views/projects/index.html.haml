@@ -1,0 +1,22 @@
+.row
+  .span6.offset3
+    %h2 Projects
+    - if @projects.blank?
+      %b There is no projects
+    - else
+      %table.table.table-hover
+        %tr
+          %th ID
+          %th Name
+          %th
+          %th
+        - @projects.each do |proj|
+          %tbody
+            %tr
+              %td= proj.id
+              %td= link_to proj.name, url_for([@user, proj]), method: :get
+              %td= link_to "Edit", edit_user_project_path(@user, proj)
+              %td= link_to "Delete", url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?"}
+  .span6.offset5
+    = form_for @project, url: new_user_project_path, method: :get do |f|
+      = f.submit "Add project", class: "btn btn-primary btn-large"

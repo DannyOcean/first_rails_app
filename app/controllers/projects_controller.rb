@@ -7,9 +7,11 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @projects = current_user.projects
+    @project = current_user.projects.build
   end
 
   def show
+    @task = current_user.projects.where(id: params[:id]).first.tasks.build
     @user = current_user
     if @project
       @project = Project.includes(:tasks).find(params[:id])

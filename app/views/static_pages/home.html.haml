@@ -1,0 +1,6 @@
+- if signed_in?
+  :javascript
+    window.location.href="#{user_projects_path(current_user)}"
+- else
+  :javascript
+      window.location.href="#{new_sessions_path}"
