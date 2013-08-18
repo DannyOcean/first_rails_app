@@ -1,25 +1,25 @@
-%h2= @project.name
 .row
   .span6.offset3
-    %h2 Tasks
-    = form_for @task, url: user_project_tasks_path(@user, @project, @task) , html: {class: "input-append"} do |f|
-      = f.text_field :name, id: "appendedInputButton", class: "span5", placeholder: "Add new task"
-      = f.submit "Add", class: 'btn'
-    - if @project.tasks.blank?
-      %br There are no tasks
-    - else
-      %table.table.table-hover
-        %tr
-          %th ID
-          %th Name
-          %th Status
-          %th
-          %th
-        - @project.tasks.each do |task|
+    .form-head
+      .content-head
+        %i.icon-file-alt
+        Current Tasks
+    .form-mid
+      .content-mid
+        %i.icon-plus.icon-2x.plus
+        = form_for @task, url: user_project_tasks_path(@user, @project, @task) , html: {class: "input-append"} do |f|
+          = f.text_field :name, id: "appendedInputButton", class: "span4", placeholder: "Start typing here to create a task..."
+          = f.submit "Add Task", class: 'btn'
+    .form-list
+      - if @project.tasks.blank?
+        %p{style: "text-align: center"} There are no tasks
+      - else
+        %table.table.table-hover
           %tbdody
-            %tr
-              %td= task.id
-              %td= task.name
-              %td= task.status
-              %td= link_to "Edit", edit_user_project_task_path(@user, @project, task)
-              %td= link_to "Delete", user_project_task_path(@user, @project, task), method: :delete
+            - @project.tasks.each do |task|
+              %tr
+                %td= check_box_tag("task", "status", task.status, disabled: false)
+                %td.borders= task.name
+                %td= task.status
+                %td= link_to "Edit", edit_user_project_task_path(@user, @project, task)
+                %td= link_to "Delete", user_project_task_path(@user, @project, task), method: :delete

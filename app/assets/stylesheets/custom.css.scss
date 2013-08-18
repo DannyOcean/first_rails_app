@@ -57,14 +57,6 @@ p {
   line-height: 1.7em;
 }
 
-#font-head {
-  margin-top: 10px;
-  color: white;
-  font-family: helvetica;
-  font-size: 2em;
-  font-weight: bold;
-}
-
 /* header */
 
 #logo {
@@ -85,23 +77,54 @@ p {
 
 /* form for projects#index*/
 
-#projects-head {
-  height: 50px;
+.form-head {
+  height: 40px;
+  margin-top: 50px;
   background-color: #3f66a7;
   border: 1px solid #315589;
-  text-align: center;
 }
 
-#projects-mid {
+.form-mid {
   height: 50px;
   background-color: #d7d7d7;
   border: 1px solid #aaaaaa;
 }
 
-#projects-list {
+.form-list {
   margin-bottom: 50px;
   background-color: #ffffff;
   border: 1px solid #aaaaaa;
   border-radius: 0px 0px 15px 15px;
-  box-shadow: 1px 1px 2px gray;
+  box-shadow: 1px 1px 2px $grayLight;
+}
+
+/* other */
+
+// content in the top (head) layer
+.content-head {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: white;
+  font-family: helvetica;
+  font-size: 1.5em;
+}
+
+// content in the mid layer
+.content-mid {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+// mid-layer + sign
+.plus {
+  margin-top: 10px;
+  margin-right: 10px;
+  color: #589072;
+}
+
+// borders around name of projects and tasks in the list
+.borders {
+  border-left: 1px solid #E7EBEA;
+  border-right: 1px solid #E7EBEA;
 }

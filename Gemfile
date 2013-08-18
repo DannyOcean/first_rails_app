@@ -33,6 +33,7 @@ gem 'devise'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'rake-compiler'
 gem 'haml-rails'
+gem 'font-awesome-sass-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

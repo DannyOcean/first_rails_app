@@ -1,26 +1,24 @@
 .row
   .span6.offset3
-    %h2 Projects
-    - if @projects.blank?
-      %b There is no projects
-    - else
-      #projects-head
-        #font-head
-          List of projects
-      #projects-list
+    .form-head
+      .content-head
+        %i.icon-calendar
+        Current projects
+    .form-mid
+      .content-mid
+        %i.icon-plus.icon-2x.plus
+        = form_for @project, url: user_projects_path(@user, @project), method: :post, html: {class: "input-append"} do |f|
+          = f.text_field :name, id: "appendedInputButton", class: "span4", placeholder: "Start typing here to create project..."
+          = f.submit "Add Project", class: 'btn'
+    .form-list
+      - if @user.projects.blank?
+        %p{style: "text-align: center"} There is no projects
+      - else
         %table.table.table-hover
-          %tr
-            %th ID
-            %th Name
-            %th
-            %th
           - @projects.each do |proj|
             %tbody
               %tr
                 %td= proj.id
-                %td= link_to proj.name, url_for([@user, proj]), method: :get
+                %td.borders= link_to proj.name, url_for([@user, proj]), method: :get
                 %td= link_to "Edit", edit_user_project_path(@user, proj)
-                %td= link_to "Delete", url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?"}
-  .span6.offset5
-    = form_for current_user.projects.build, url: new_user_project_path, method: :get do |f|
-      = f.submit "Add project", class: "btn btn-primary btn-large"
+                %td= link_to "Delete", url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?" }
