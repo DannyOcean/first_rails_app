@@ -2,10 +2,9 @@
 .row
   .span6.offset3
     %h2 Tasks
-    .offset1
-      = form_for @task, url: user_project_tasks_path(@user, @project, @task) , html: {class: "input-append"} do |f|
-        = f.text_field :name, id: "appendedInputButton", class: "span3", placeholder: "Add new task"
-        = f.submit "Add", class: 'btn'
+    = form_for @task, url: user_project_tasks_path(@user, @project, @task) , html: {class: "input-append"} do |f|
+      = f.text_field :name, id: "appendedInputButton", class: "span5", placeholder: "Add new task"
+      = f.submit "Add", class: 'btn'
     - if @project.tasks.blank?
       %br There are no tasks
     - else
