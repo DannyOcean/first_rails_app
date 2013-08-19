@@ -11,7 +11,7 @@ $grayLight: #999;
 //}
 
 body {
-  //background-image: url(wall.jpg);
+  background-image: url(wall4.jpg);
   padding-top: 60px;
 }
 
@@ -75,13 +75,14 @@ p {
   }
 }
 
-/* form for projects#index*/
+/* form for projects#index and projects#show*/
 
 .form-head {
   height: 40px;
   margin-top: 50px;
   //background-color: #3f66a7;
   border: 1px solid #315589;
+  //gradient
   background-image: linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
   background-image: -o-linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
   background-image: -moz-linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
@@ -101,6 +102,7 @@ p {
   height: 50px;
   //background-color: #d7d7d7;
   border: 1px solid #aaaaaa;
+  //gradient
   background-image: linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
   background-image: -o-linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
   background-image: -moz-linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
@@ -149,8 +151,20 @@ p {
   color: #589072;
 }
 
-// borders around name of projects and tasks in the list
+// borders around name of projects and tasks in the list   c458cb
 .borders {
   border-left: 1px solid #E7EBEA;
   border-right: 1px solid #E7EBEA;
+}
+
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: $grayLight;
+  }
+}
+
+.icon {
+  text-align: center;
 }
