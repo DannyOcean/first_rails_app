@@ -80,14 +80,40 @@ p {
 .form-head {
   height: 40px;
   margin-top: 50px;
-  background-color: #3f66a7;
+  //background-color: #3f66a7;
   border: 1px solid #315589;
+  background-image: linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
+  background-image: -o-linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
+  background-image: -moz-linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
+  background-image: -webkit-linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
+  background-image: -ms-linear-gradient(bottom, #375EA1 0%, #5281BA 100%);
+
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #375EA1),
+      color-stop(1, #5281BA)
+  );
 }
 
 .form-mid {
   height: 50px;
-  background-color: #d7d7d7;
+  //background-color: #d7d7d7;
   border: 1px solid #aaaaaa;
+  background-image: linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
+  background-image: -o-linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
+  background-image: -moz-linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
+  background-image: -webkit-linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
+  background-image: -ms-linear-gradient(bottom, #CCCCCC 0%, #E0E0E0 100%);
+
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #CCCCCC),
+      color-stop(1, #E0E0E0)
+  );
 }
 
 .form-list {
