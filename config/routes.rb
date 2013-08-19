@@ -3,7 +3,10 @@ TaskManager::Application.routes.draw do
   get "static_pages/home"
   resources :users do
     resources :projects do
-      resources :tasks, except: [:index, :show]
+      resources :tasks, except: [:index, :show] do
+        get :upvote, on: :member
+        get :downvote, on: :member
+      end
     end
   end
   resource :sessions, only: [:new, :create, :destroy]

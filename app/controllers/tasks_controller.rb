@@ -41,6 +41,16 @@ class TasksController < ApplicationController
     redirect_to user_project_path(current_user, current_project)
   end
 
+  def upvote
+    @task.increment!(:priority) if @task.priority < 3
+    redirect_to user_project_path(current_user, current_project)
+  end
+
+  def downvote
+    @task.decrement!(:priority) if @task.priority > 1
+    redirect_to user_project_path(current_user, current_project)
+  end
+
   private
 
   def current_project

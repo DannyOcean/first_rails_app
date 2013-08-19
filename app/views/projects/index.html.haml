@@ -20,5 +20,5 @@
               %tr
                 %td= proj.id
                 %td.borders= link_to proj.name, url_for([@user, proj]), method: :get
-                %td.icon= link_to insert_html("<i class='icon-edit'></i>"), edit_user_project_path(@user, proj)
-                %td.icon= link_to insert_html("<i class='icon-trash'></i>"), url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?" }
+                %td.center= link_to insert_html("<i class='icon-edit'></i>"), edit_user_project_path(@user, proj)
+                %td.center= link_to insert_html("<i class='icon-trash'></i>"), url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?" }
