@@ -3,10 +3,12 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:create, :new]
   skip_before_filter :verify_authenticity_token, only: [:update]
 
+
   def create
     @task = current_project.tasks.build(task_params)
+    #converts :priority attribute from symbol/string to integer
+    @task.priority = params[:task][:priority].gsub(/\D/, '').to_i unless params[:task][:priority].nil?
     if @task.save
-      flash.now[:success] = "Task created"
       redirect_to user_project_path(current_user, current_project)
     else
       flash.now[:error] = "Project name should be from 3 to 50 characters"
@@ -20,11 +22,13 @@ class TasksController < ApplicationController
 
   def update
     @task.update_attributes(params[:task])
+    #converts :priority attribute from symbol/string to integer
+    @task.priority = params[:task][:priority].gsub(/\D/, '').to_i unless params[:task][:priority].nil?
+    @task.save
     if @task.errors.blank?
-      flash[:success] = "Successfully updated!"
       redirect_to user_project_path(current_user, current_project)
     else
-      flash.now[:error] = "Name should be greater than 2 characters and less than 50 characters length"
+      flash.now[:error] = "Check your input, name should be from 2 til 50 character, priority should be integer number from 1 to 3"
       render "edit"
     end
   end
@@ -34,8 +38,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:success] = "Task deleted"
-    redirect_to user_projects_path
+    redirect_to user_project_path(current_user, current_project)
   end
 
   private
@@ -49,6 +52,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :status)
+    params.require(:task).permit(:name, :status, :priority)
   end
 end

@@ -34,7 +34,6 @@ class ProjectsController < ApplicationController
   def update
     @project.update_attributes(params[:project])
     if @project.errors.blank?
-      flash[:success] = "Successfully updated!"
       redirect_to action: "index"
     else
       flash.now[:error] = "Name should not exceed 50 characters"

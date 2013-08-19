@@ -16,10 +16,12 @@
       - else
         %table.table.table-hover
           %tbdody
-            - @project.tasks.each do |task|
+            - @project.tasks.order('priority desc').each do |task|
               %tr
               = form_for task, url: user_project_task_path(@user, @project, task), method: :patch, remote: true do |f|
                 %td= f.check_box :status, onchange: 'this.form.submit()'
                 %td.borders= task.name
+
+                %td= task.priority
                 %td.icon= link_to insert_html("<i class='icon-edit'></i>"), edit_user_project_task_path(@user, @project, task)
                 %td.icon= link_to insert_html("<i class='icon-trash'></i>"), user_project_task_path(@user, @project, task), method: :delete
