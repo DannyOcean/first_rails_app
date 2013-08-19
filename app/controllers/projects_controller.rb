@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @projects = current_user.projects
-    @project = current_user.projects.build
   end
 
   def show
