@@ -6,12 +6,11 @@ class TasksController < ApplicationController
 
   def create
     @task = current_project.tasks.build(task_params)
-    sym_to_datetime(@task)
-    sym_to_str(@task)
+    to_valid_deadline(@task)
+    to_valid_priority(@task)
     if @task.save
       redirect_to user_project_path(current_user, current_project)
     else
-      flash.now[:error] = "Project name should be from 3 to 50 characters"
       render "tasks/new"
     end
   end
@@ -22,12 +21,11 @@ class TasksController < ApplicationController
 
   def update
     @task.update_attributes(params[:task])
-    sym_to_datetime(@task)
-    sym_to_str(@task)
+    to_valid_deadline(@task)
+    to_valid_priority(@task)
     if @task.save
       redirect_to user_project_path(current_user, current_project)
     else
-      flash.now[:error] = "Check your input, name should be from 2 til 50 character, priority should be integer number from 1 to 3"
       render "edit"
     end
   end
@@ -65,12 +63,12 @@ class TasksController < ApplicationController
   end
 
   #converts :priority attribute from symbol/string to integer
-  def sym_to_str(task)
+  def to_valid_priority(task)
     task.priority = params[:task][:priority].gsub(/\D/, '').to_i unless params[:task][:priority].nil?
   end
 
   #converts :deadline attribute from symbol/string to valid datetime
-  def sym_to_datetime(task)
+  def to_valid_deadline(task)
     task.deadline = params[:task][:deadline].to_datetime unless params[:task][:deadline].nil?
   end
 end

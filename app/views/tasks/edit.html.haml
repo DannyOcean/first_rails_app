@@ -2,12 +2,14 @@
 .row
   .span6.offset4
     = form_for @task, url: user_project_task_path, method: :put do |f|
+      = render 'shared/error_messages', object: f.object
+    = form_for @task, url: user_project_task_path, method: :put do |f|
       = f.label :name
       = f.text_field :name
       = f.label :status
-      = f.text_field :status
+      = f.select :status, [['done', true], ['undone', false]]
       = f.label :priority
-      = f.text_field :priority
+      = f.select :priority, [['low', 1], ['medium', 2], ['high', 3]]
       = f.label :deadline
       .input-append.date.form_datetime
         = f.text_field :deadline, value: "#{@task.deadline.to_formatted_s(:db) unless @task.deadline.nil?}"

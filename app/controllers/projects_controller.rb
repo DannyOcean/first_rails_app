@@ -24,7 +24,6 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project created"
       redirect_to user_projects_path
     else
-      flash.now[:error] = "Project name should be from 3 to 50 characters"
       render "projects/new"
     end
   end
@@ -34,7 +33,6 @@ class ProjectsController < ApplicationController
     if @project.errors.blank?
       redirect_to action: "index"
     else
-      flash.now[:error] = "Name should not exceed 50 characters"
       render "edit"
     end
   end

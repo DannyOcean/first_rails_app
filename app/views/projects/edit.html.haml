@@ -2,6 +2,8 @@
 .row
   .span6.offset4
     = form_for @project, url: user_project_path, method: :put do |f|
+      = render 'shared/error_messages', object: f.object
+    = form_for @project, url: user_project_path, method: :put do |f|
       = f.label :name
       = f.text_field :name
       %p #{f.submit "Save", class: "btn btn-medium btn-primary"}

@@ -2,10 +2,12 @@
 .row
   .span6.offset4
     = form_for @task, url: user_project_tasks_path do |f|
+      = render 'shared/error_messages', object: f.object
+    = form_for @task, url: user_project_tasks_path do |f|
       = f.label :name
       = f.text_field :name, placeholder: "Type here name of task"
       = f.label :priority
-      = f.text_field :priority, placeholder: "Enter integer number from 1 til 3"
+      = f.select :priority, [['low', 1], ['medium', 2], ['high', 3]]
       = f.label :deadline
       .input-append.date.form_datetime
         = f.text_field :deadline, placeholder: "Pick the date and time"

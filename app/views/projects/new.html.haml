@@ -2,6 +2,8 @@
 .row
   .span6.offset4
     = form_for @project, url: user_projects_path do |f|
+      = render 'shared/error_messages', object: f.object
+    = form_for @project, url: user_projects_path do |f|
       = f.label :name
       = f.text_field :name, placeholder: "Type here name of project"
       %p #{f.submit "Create", class: "btn btn-medium btn-primary"}
