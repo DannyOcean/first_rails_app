@@ -19,7 +19,7 @@
             - @project.tasks.order('priority desc', 'name').each do |task|
               %tr
               = form_for task, url: user_project_task_path(@user, @project, task), method: :patch, remote: true do |f|
-                %td= f.check_box :status, onchange: 'this.form.submit()'
+                %td.center= f.check_box :status, onchange: 'this.form.submit()'
                 %td.borders= task.name
                 %td.borders= remaining_to_date(task.deadline)
                 %td.center

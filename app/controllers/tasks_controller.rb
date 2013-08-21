@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:create, :new]
   skip_before_filter :verify_authenticity_token, only: [:update]
 
-
   def create
     @task = current_project.tasks.build(task_params)
     to_valid_deadline(@task)
