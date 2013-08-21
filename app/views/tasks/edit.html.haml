@@ -8,4 +8,13 @@
       = f.text_field :status
       = f.label :priority
       = f.text_field :priority
+      = f.label :deadline
+      .input-append.date.form_datetime
+        = f.text_field :deadline
+        %span.add-on= insert_html("<i class='icon-th'></i>")
       %p #{f.submit "Save", class: "btn btn-medium btn-primary"}
+
+:javascript
+  $(".form_datetime").datetimepicker({
+    format: "dd-mm-yyyy hh:ii:ss"
+  });

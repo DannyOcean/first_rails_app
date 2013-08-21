@@ -16,6 +16,10 @@ class Task < ActiveRecord::Base
   end
 
 =begin
+  def deadline=(val)
+    write_attribute :deadline, val.to_datetime
+  end
+
   def priority=(val)
     write_attribute :priority, val.to_s.gsub(/\D/, '').to_i
   end
