@@ -1,10 +1,10 @@
-%p Login:
-#{f.text_field :login}
-%p Name:
-#{f.text_field :name}
-%p Email:
-#{f.text_field :email}
-%p Password:
-#{f.password_field :password}
-%p Password confirmation:
-#{f.password_field :password_confirmation}
+= f.label :login
+= f.text_field :login, placeholder: "Enter your login here"
+= f.label :name
+= f.text_field :name, placeholder: "Enter your name here"
+= f.label :email
+= f.text_field :email, placeholder: "Enter you e-mail here"
+= f.label :password
+= f.password_field :password, placeholder: "Enter your password here"
+= f.label :password_confirmation
+= f.password_field :password_confirmation, placeholder: "Repeat your password here"

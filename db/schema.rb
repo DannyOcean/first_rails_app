@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821121659) do
+ActiveRecord::Schema.define(version: 20130821195451) do
 
   create_table "projects", force: true do |t|
     t.string  "name"
@@ -21,14 +21,17 @@ ActiveRecord::Schema.define(version: 20130821121659) do
   add_index "projects", ["name"], name: "index_projects_on_name"
 
   create_table "tasks", force: true do |t|
-    t.string   "name"
-    t.boolean  "status"
     t.integer  "project_id"
-    t.integer  "priority"
+    t.string   "name"
+    t.boolean  "status",     default: false
+    t.integer  "priority",   default: 1
     t.datetime "deadline"
   end
 
+  add_index "tasks", ["deadline"], name: "index_tasks_on_deadline"
   add_index "tasks", ["name"], name: "index_tasks_on_name"
+  add_index "tasks", ["priority"], name: "index_tasks_on_priority"
+  add_index "tasks", ["status"], name: "index_tasks_on_status"
 
   create_table "users", force: true do |t|
     t.string  "login"
@@ -41,6 +44,9 @@ ActiveRecord::Schema.define(version: 20130821121659) do
     t.boolean "admin",                 default: false
   end
 
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["login"], name: "index_users_on_login"
+  add_index "users", ["name"], name: "index_users_on_name"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

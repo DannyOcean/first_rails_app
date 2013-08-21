@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  #login: iamadmin
-  #pass: revolution
 
   before_action :find_user, only: [:show, :edit, :update, :destroy]
   before_action :check_if_admin, only: [:index,:destroy]
@@ -12,14 +10,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    #render text: params.inspect
     @user = User.create(user_params)
     if @user.errors.blank?
       sign_in @user
       flash[:success] = "Yo man! Glad to see you!"
       redirect_to @user
     else
-      flash.now[:error] = "You made some mistake in the form, try again :)"
       render "new"
     end
   end
@@ -36,7 +32,6 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to action: "index"
     else
-      flash.now[:error] = "You made some mistake in the form, try again :)"
       render "edit"
     end
   end

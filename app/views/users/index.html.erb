@@ -1,28 +1,26 @@
 <div class="row">
-    <div class="span6 offset3">
-        <h2>Users</h2>
-        <% if @users.blank? %>
-            <b>There is no users</b>
-        <% else %>
-            <table class="table table-hover">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-        <% @users.each do |i| %>
-                <tbody>
-                    <tr>
-                        <td><%= i.id %></td>
-                        <td><%= link_to i.name, user_path(i) %></td>
-                        <td><%= i.email %></td>
-                        <td><%= link_to "Edit", user_path(i), method: :put %></td>
-                        <td><%= link_to "Delete", user_path(i), method: :delete, data: { confirm: "Are you sure?"} %></td>
-                    </tr>
-                </tbody>
+    <div class="span8 offset2">
+        <div class="form-head">
+            <div class=content-head>
+                <i class="icon-user"></i> Current Users
+            </div>
+        </div>
+        <div class="form-list">
+            <% if @users.blank? %>
+                <b>There is no users</b>
+            <% else %>
+                <table class="table table-hover">
+                <% @users.each do |i| %>
+                    <tbody>
+                        <tr>
+                            <td class="center"><%= i.id %></td>
+                            <td class="borders"><%= link_to i.name, user_path(i) %></td>
+                            <td class="borders"><%= i.email %></td>
+                            <td class="center"><%= link_to insert_html("<i class='icon-trash'></i>"), user_path(i), method: :delete, data: { confirm: "Are you sure?"} %></td>
+                        </tr>
+                    </tbody>
+                <% end %>
             <% end %>
-        <% end %>
+        </div>
     </div>
 </div>
