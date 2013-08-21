@@ -2,7 +2,6 @@ class ProjectsController < ApplicationController
 
   before_action :signed_in_user
   before_action :find_project, except: [:index, :new, :create]
-  #before_filter :find_project, only: [:show, :update, :edit, :destroy]
 
   def index
     @user = current_user
@@ -20,7 +19,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    #render text: params.inspect
     @project = current_user.projects.build(project_params)
     if @project.save
       flash[:success] = "Project created"

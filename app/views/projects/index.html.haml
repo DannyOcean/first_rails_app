@@ -1,5 +1,5 @@
 .row
-  .span6.offset3
+  .span8.offset2
     .form-head
       .content-head
         %i.icon-calendar
@@ -8,7 +8,7 @@
       .content-mid
         %i.icon-plus.icon-2x.plus
         = form_for Project.new, url: user_projects_path, method: :post, html: {class: "input-append"} do |f|
-          = f.text_field :name, id: "appendedInputButton", class: "span4", placeholder: "Start typing here to create project..."
+          = f.text_field :name, id: "appendedInputButton", class: "span6", placeholder: "Start typing here to create project..."
           = f.submit "Add Project", class: 'btn'
     .form-list
       - if @user.projects.blank?
@@ -18,7 +18,7 @@
           - @projects.each do |proj|
             %tbody
               %tr
-                %td= proj.id
+                %td.center= proj.id
                 %td.borders= link_to proj.name, url_for([@user, proj]), method: :get
                 %td.center= link_to insert_html("<i class='icon-edit'></i>"), edit_user_project_path(@user, proj)
                 %td.center= link_to insert_html("<i class='icon-trash'></i>"), url_for([@user, proj]), method: :delete, data: { confirm: "Are you sure?" }

@@ -5,12 +5,16 @@ module ApplicationHelper
   end
 
   def remaining_to_date(date)
-    unless date.nil?
+    if date.nil?
+      "DEADLINE isn't set"
+    else
       remaining_time = (date - Time.now).round
       remaining_time = (remaining_time / 60 / 60 ) #hours
-      "#{remaining_time} hours remaining"
-    else
-      "Deadline isn't set"
+      if remaining_time > 0
+        "#{remaining_time} hours remaining"
+      else
+        "DEADLINE has gone"
+      end
     end
   end
 

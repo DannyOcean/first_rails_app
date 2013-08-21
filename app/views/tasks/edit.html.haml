@@ -10,7 +10,7 @@
       = f.text_field :priority
       = f.label :deadline
       .input-append.date.form_datetime
-        = f.text_field :deadline
+        = f.text_field :deadline, value: "#{@task.deadline.to_formatted_s(:db) unless @task.deadline.nil?}"
         %span.add-on= insert_html("<i class='icon-th'></i>")
       %p #{f.submit "Save", class: "btn btn-medium btn-primary"}
 

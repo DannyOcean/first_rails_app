@@ -1,5 +1,5 @@
 .row
-  .span6.offset3
+  .span8.offset2
     .form-head
       .content-head
         %i.icon-file-alt
@@ -8,7 +8,7 @@
       .content-mid
         %i.icon-plus.icon-2x.plus
         = form_for @task, url: user_project_tasks_path(@user, @project, @task) , html: {class: "input-append"} do |f|
-          = f.text_field :name, id: "appendedInputButton", class: "span4", placeholder: "Start typing here to create a task..."
+          = f.text_field :name, id: "appendedInputButton", class: "span6", placeholder: "Start typing here to create a task..."
           = f.submit "Add Task", class: 'btn'
     .form-list
       - if @project.tasks.blank?

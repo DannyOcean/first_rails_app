@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to user_project_path(current_user, current_project)
     else
-      flash.now[:error] = params.inspect#"Check your input, name should be from 2 til 50 character, priority should be integer number from 1 to 3"
+      flash.now[:error] = "Check your input, name should be from 2 til 50 character, priority should be integer number from 1 to 3"
       render "edit"
     end
   end
