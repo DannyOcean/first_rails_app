@@ -168,3 +168,13 @@ a {
 .icon {
   height: 8px;
 }
+
+/* for client_side_validations gem */
+
+.field_with_errors {
+  .message {
+    display: inline-block;
+    margin-left: 10px;
+    width: 35%; //37% is as length of input field
+  }
+}

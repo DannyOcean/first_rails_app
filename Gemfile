@@ -19,6 +19,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'rake-compiler'
 gem 'haml-rails'
 gem 'font-awesome-sass-rails'
+gem 'client_side_validations',
+  github: 'bcardarella/client_side_validations',
+  branch: '4-0-beta'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

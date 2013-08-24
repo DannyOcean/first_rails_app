@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/bcardarella/client_side_validations.git
+  revision: 9461cb92e1dfb64895d590c6d435cdf48fcede45
+  branch: 4-0-beta
+  specs:
+    client_side_validations (3.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -88,7 +95,6 @@ GEM
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
-    pg (0.15.1)
     pg (0.15.1-x86-mingw32)
     polyglot (0.3.3)
     protected_attributes (1.0.3)
@@ -173,6 +179,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.3.2.0)
   capybara (= 2.1.0)
+  client_side_validations!
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails (= 4.2.0)

@@ -1,10 +1,7 @@
 <h1>Registration</h1>
 <div class="row">
     <div class="span6 offset4">
-        <%= form_for(@user) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-        <% end %>
-        <%= form_for @user do |f| %>
+        <%= form_for @user, validate: true do |f| %>
             <%= render partial: "shared/user_form", locals: {f: f} %>
             <p><%= f.submit "Create", class: "btn btn-primary btn-medium" %></p>
         <% end %>
