@@ -1,110 +1,110 @@
 == Deployed TODO app
-I've deployed this app to heroku, but my 'ajaxy' client side validation doesn't work there. But it works on my lokal machine! Maybe I am doing something wrong with my precompiled assets, dunno. Anyway you can check my sources.
+I've deployed this app to heroku, but my 'ajaxy' client side validation doesn't work there. But it works on my lokal machine! Maybe I am doing something wrong with my precompiled assets, dunno. Anyway you can check my sources. <br/>
 Link: http://clck.ru/8oNxp
 
-== SQL TASK
-==== for RubyGarage
+== SQL TASK <em>for RubyGarage</em>
 
-Following text contains 8 queries for the SQL task for RubyGarage. Before each of the query I've put what should be done by this query.
+Following text contains 8 queries for the SQL task for RubyGarage. Before each of the query I've put what should be done by this query.    <br/>
 Also, After 8th query I've put query for creating DB, and in the end of this document you will find a link to *.zip archieve with sources.
 
 ==== Query 1
-/*
-get all statuses, not repeating, alphabetically ordered
-*/
-SELECT DISTINCT status "Status"
-FROM Tasks
+/*                                                                                      <br/>
+get all statuses, not repeating, alphabetically ordered                                 <br/>
+*/                                                                                      <br/>
+SELECT DISTINCT status "Status"                                                         <br/>
+FROM Tasks                                                                              <br/>
 ORDER BY status;
 
 ==== Query 2
-/*
-get the count of all tasks in each project, order by tasks count descending
-*/
-SELECT COUNT (t.ID) "Q-ty of tasks", p.Name "Project Name"
-FROM Tasks t, Projects p
-WHERE t.project_id = p.ID
-GROUP BY p.Name
-ORDER BY COUNT (t.ID) DESC;
+/*                                                                                      <br/>
+get the count of all tasks in each project, order by tasks count descending             <br/>
+*/                                                                                      <br/>
+SELECT COUNT (t.ID) "Q-ty of tasks", p.Name "Project Name"                              <br/>
+FROM Tasks t, Projects p                                                                <br/>
+WHERE t.project_id = p.ID                                                               <br/>
+GROUP BY p.Name                                                                         <br/>
+ORDER BY COUNT (t.ID) DESC;                                                             <br/>
 
 ==== Query 3
-/*
-get the count of all tasks in each project, order by project names
-*/
-SELECT COUNT (t.ID) "Q-ty of tasks", p.Name "Project Name"
-FROM Tasks t, Projects p
-WHERE t.project_id = p.ID
-GROUP BY p.Name
-ORDER BY p.Name;
+/*                                                                                      <br/>
+get the count of all tasks in each project, order by project names                      <br/>
+*/                                                                                      <br/>
+SELECT COUNT (t.ID) "Q-ty of tasks", p.Name "Project Name"                              <br/>
+FROM Tasks t, Projects p                                                                <br/>
+WHERE t.project_id = p.ID                                                               <br/>
+GROUP BY p.Name                                                                         <br/>
+ORDER BY p.Name;                                                                        <br/>
 
 ==== Query 4
-/*
-get the tasks for all projects having the name beginning with “N” letter
-*/
-SELECT t.Name "Task Name"
-FROM Tasks t, Projects p
-WHERE t.project_id = p.ID
+/*                                                                                      <br/>
+get the tasks for all projects having the name beginning with “N” letter                 <br/>
+*/                                                                                      <br/>
+SELECT t.Name "Task Name"                                                               <br/>
+FROM Tasks t, Projects p                                                                <br/>
+WHERE t.project_id = p.ID                                                               <br/>
 AND p.Name LIKE 'N%';
 
 ==== Query 5
-/*
-get the list of all projects containing the ‘a’ letter in the middle of the name,
-and show the tasks count near each project.
-Mention that there can exist projects without tasks and tasks with project_id = NULL
-*/
-SELECT p.Name "Project Name", NVL(COUNT (*), 0) "Q-ty of tasks"
-FROM Tasks t, Projects p
-WHERE t.project_id = p.ID
-AND p.Name LIKE '%a%'
+/*                                                                                      <br/>
+get the list of all projects containing the ‘a’ letter in the middle of the name,        <br/>
+and show the tasks count near each project.                                             <br/>
+Mention that there can exist projects without tasks and tasks with project_id = NULL    <br/>
+*/                                                                                      <br/>
+SELECT p.Name "Project Name", NVL(COUNT (*), 0) "Q-ty of tasks"                         <br/>
+FROM Tasks t, Projects p                                                                <br/>
+WHERE t.project_id = p.ID                                                               <br/>
+AND p.Name LIKE '%a%'                                                                   <br/>
 GROUP BY p.Name;
 
 ==== Query 6
-/*
-get the list of tasks with duplicate names. Order alphabetically
-*/
-SELECT name--, COUNT(name) "Occurences"
-FROM Tasks
-GROUP BY name
-HAVING (COUNT(name) > 1)
+/*                                                                              <br/>
+get the list of tasks with duplicate names. Order alphabetically                <br/>
+*/                                                                              <br/>
+SELECT name--, COUNT(name) "Occurences"                                         <br/>
+FROM Tasks                                                                      <br/>
+GROUP BY name                                                                   <br/>
+HAVING (COUNT(name) > 1)                                                        <br/>
 ORDER BY name;
 
 ==== Query 7
-/*
-get the list of tasks having several exact matches of both name and status,
-from the project ‘Garage’. Order by matches count
-*/
-SELECT t.name "Task Name", COUNT(t.name) "Matches"
-FROM Tasks t, Projects p
-WHERE t.project_id = p.ID
-AND LOWER(p.name) = 'garage'
-AND t.name = t.status
-GROUP BY t.name
+/*                                                                              <br/>
+get the list of tasks having several exact matches of both name and status,     <br/>
+from the project ‘Garage’. Order by matches count                                <br/>
+*/                                                                              <br/>
+SELECT t.name "Task Name", COUNT(t.name) "Matches"                              <br/>
+FROM Tasks t, Projects p                                                        <br/>
+WHERE t.project_id = p.ID                                                       <br/>
+AND LOWER(p.name) = 'garage'                                                    <br/>
+AND t.name = t.status                                                           <br/>
+GROUP BY t.name                                                                 <br/>
 ORDER BY COUNT(t.name);
 
 ==== Query 8
-/*
-get the list of project names having more than 10 tasks in status ‘completed’.
-Order by project_id
-*/
-SELECT p.name "Project Name"--, COUNT(t.ID) "Tasks"
-FROM Tasks t, Projects p
-WHERE t.project_id = p.ID
-AND LOWER(t.status) = 'completed'
-GROUP BY p.name, t.project_id
-HAVING COUNT(t.ID) > 10
+/*                                                                              <br/>
+get the list of project names having more than 10 tasks in status ‘completed’.   <br/>
+Order by project_id                                                             <br/>
+*/                                                                              <br/>
+SELECT p.name "Project Name"--, COUNT(t.ID) "Tasks"                             <br/>
+FROM Tasks t, Projects p                                                        <br/>
+WHERE t.project_id = p.ID                                                       <br/>
+AND LOWER(t.status) = 'completed'                                               <br/>
+GROUP BY p.name, t.project_id                                                   <br/>
+HAVING COUNT(t.ID) > 10                                                         <br/>
 ORDER BY t.project_id;
 
 ==== CREATE DB
-CREATE TABLE Projects (
-	ID integer CONSTRAINT pk_projects PRIMARY KEY,
-	name char(150) CONSTRAINT projects_name_nn_unq NOT NULL UNIQUE
+CREATE TABLE Projects                                                           <br/>
+(                                                                               <br/>
+	ID integer CONSTRAINT pk_projects PRIMARY KEY,                              <br/>
+	name char(150) CONSTRAINT projects_name_nn_unq NOT NULL UNIQUE              <br/>
 );
 
 CREATE TABLE Tasks
-(
-	ID integer CONSTRAINT pk_tasks PRIMARY KEY,
-	name char(150) NOT NULL,
-	status char(13),
-	project_id integer CONSTRAINT fk_task_project_id REFERENCES Projects (ID) ON DELETE CASCADE
+(                                                                                               <br/>
+	ID integer CONSTRAINT pk_tasks PRIMARY KEY,                                                 <br/>
+	name char(150) NOT NULL,                                                                    <br/>
+	status char(13),                                                                            <br/>
+	project_id integer CONSTRAINT fk_task_project_id REFERENCES Projects (ID) ON DELETE CASCADE <br/>
 );
 
 Here is the link for the sources: http://clck.ru/8oNxL
