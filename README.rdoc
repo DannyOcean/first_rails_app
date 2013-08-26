@@ -1,28 +1,110 @@
-== README
+== Deployed TODO app
+I've deployed this app to heroku, but my 'ajaxy' client side validation doesn't work there. But it works on my lokal machine! Maybe I am doing something wrong with my precompiled assets, dunno. Anyway you can check my sources.
+Link: http://clck.ru/8oNxp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== SQL TASK
+==== for RubyGarage
 
-Things you may want to cover:
+Following text contains 8 queries for the SQL task for RubyGarage. Before each of the query I've put what should be done by this query.
+Also, After 8th query I've put query for creating DB, and in the end of this document you will find a link to *.zip archieve with sources.
 
-* Ruby version
+==== Query 1
+/*
+get all statuses, not repeating, alphabetically ordered
+*/
+SELECT DISTINCT status "Status"
+FROM Tasks
+ORDER BY status;
 
-* System dependencies
+==== Query 2
+/*
+get the count of all tasks in each project, order by tasks count descending
+*/
+SELECT COUNT (t.ID) "Q-ty of tasks", p.Name "Project Name"
+FROM Tasks t, Projects p
+WHERE t.project_id = p.ID
+GROUP BY p.Name
+ORDER BY COUNT (t.ID) DESC;
 
-* Configuration
+==== Query 3
+/*
+get the count of all tasks in each project, order by project names
+*/
+SELECT COUNT (t.ID) "Q-ty of tasks", p.Name "Project Name"
+FROM Tasks t, Projects p
+WHERE t.project_id = p.ID
+GROUP BY p.Name
+ORDER BY p.Name;
 
-* Database creation
+==== Query 4
+/*
+get the tasks for all projects having the name beginning with “N” letter
+*/
+SELECT t.Name "Task Name"
+FROM Tasks t, Projects p
+WHERE t.project_id = p.ID
+AND p.Name LIKE 'N%';
 
-* Database initialization
+==== Query 5
+/*
+get the list of all projects containing the ‘a’ letter in the middle of the name,
+and show the tasks count near each project.
+Mention that there can exist projects without tasks and tasks with project_id = NULL
+*/
+SELECT p.Name "Project Name", NVL(COUNT (*), 0) "Q-ty of tasks"
+FROM Tasks t, Projects p
+WHERE t.project_id = p.ID
+AND p.Name LIKE '%a%'
+GROUP BY p.Name;
 
-* How to run the test suite
+==== Query 6
+/*
+get the list of tasks with duplicate names. Order alphabetically
+*/
+SELECT name--, COUNT(name) "Occurences"
+FROM Tasks
+GROUP BY name
+HAVING (COUNT(name) > 1)
+ORDER BY name;
 
-* Services (job queues, cache servers, search engines, etc.)
+==== Query 7
+/*
+get the list of tasks having several exact matches of both name and status,
+from the project ‘Garage’. Order by matches count
+*/
+SELECT t.name "Task Name", COUNT(t.name) "Matches"
+FROM Tasks t, Projects p
+WHERE t.project_id = p.ID
+AND LOWER(p.name) = 'garage'
+AND t.name = t.status
+GROUP BY t.name
+ORDER BY COUNT(t.name);
 
-* Deployment instructions
+==== Query 8
+/*
+get the list of project names having more than 10 tasks in status ‘completed’.
+Order by project_id
+*/
+SELECT p.name "Project Name"--, COUNT(t.ID) "Tasks"
+FROM Tasks t, Projects p
+WHERE t.project_id = p.ID
+AND LOWER(t.status) = 'completed'
+GROUP BY p.name, t.project_id
+HAVING COUNT(t.ID) > 10
+ORDER BY t.project_id;
 
-* ...
+==== CREATE DB
+CREATE TABLE Projects (
+	ID integer CONSTRAINT pk_projects PRIMARY KEY,
+	name char(150) CONSTRAINT projects_name_nn_unq NOT NULL UNIQUE
+);
 
+CREATE TABLE Tasks
+(
+	ID integer CONSTRAINT pk_tasks PRIMARY KEY,
+	name char(150) NOT NULL,
+	status char(13),
+	project_id integer CONSTRAINT fk_task_project_id REFERENCES Projects (ID) ON DELETE CASCADE
+);
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Here is the link for the sources: http://clck.ru/8oNxL
