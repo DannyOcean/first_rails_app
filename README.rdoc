@@ -1,3 +1,11 @@
+== Dev environment
+I am using
+- Win x64.
+- Intelliji IDEA with ruby plug-in
+- Ruby v2.0.0-p247 x64                          (from rubyinstaller.org)
+- DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe (from rubyinstaller.org)
+- Rails v4.0.0
+
 == Deployed TODO app
 I've deployed this app to heroku, but my 'ajaxy' client side validation doesn't work there. But it works on my local machine! Maybe I am doing something wrong with my precompiled assets, dunno. Anyway you can check my sources.
 
@@ -114,9 +122,7 @@ HAVING COUNT(t.ID) > 10
 ORDER BY t.project_id;
 
 ==== CREATE DB
-CREATE TABLE Projects
-
-(
+CREATE TABLE Projects (
 
 	ID integer CONSTRAINT pk_projects PRIMARY KEY,
 
@@ -124,9 +130,7 @@ CREATE TABLE Projects
 
 );
 
-CREATE TABLE Tasks
-
-(
+CREATE TABLE Tasks (
 
 	ID integer CONSTRAINT pk_tasks PRIMARY KEY,
 
