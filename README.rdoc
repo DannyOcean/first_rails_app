@@ -100,11 +100,11 @@ CREATE TABLE Projects                                                           
 );
 
 CREATE TABLE Tasks
-(                                                                                               <br>
-	ID integer CONSTRAINT pk_tasks PRIMARY KEY,                                                 <br>
-	name char(150) NOT NULL,                                                                    <br>
-	status char(13),                                                                            <br>
-	project_id integer CONSTRAINT fk_task_project_id REFERENCES Projects (ID) ON DELETE CASCADE <br>
+(                                                                                               <br />
+	ID integer CONSTRAINT pk_tasks PRIMARY KEY,                                                 <br />
+	name char(150) NOT NULL,                                                                    <br />
+	status char(13),                                                                            <br />
+	project_id integer CONSTRAINT fk_task_project_id REFERENCES Projects (ID) ON DELETE CASCADE <br />
 );
 
 Here is the link for the sources: http://clck.ru/8oNxL
