@@ -1,3 +1,4 @@
+extension :break_on_newline
 == Deployed TODO app
 I've deployed this app to heroku, but my 'ajaxy' client side validation doesn't work there. But it works on my local machine! Maybe I am doing something wrong with my precompiled assets, dunno. Anyway you can check my sources. <br>
 Link: http://clck.ru/8oNxp
